@@ -1,0 +1,114 @@
+\documentclass[10pt]{article}
+\usepackage{natbib}
+
+\usepackage[letterpaper]{geometry}
+\usepackage{listliketab}
+\usepackage{array}
+\usepackage{longtable}
+% \usepackage[usenames, dvipsnames]{color}
+\usepackage{xcolor}
+\PassOptionsToPackage{hyphens}{url}
+% \usepackage[colorlinks=true,]{hyperref}
+\usepackage{hyperref}
+\hypersetup{%
+  colorlinks=true,% hyperlinks will be black
+  linkcolor=red,
+  linkbordercolor=red,% hyperlink borders will be red
+}
+\makeatletter
+\Hy@AtBeginDocument{%
+  \def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
+  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+                                % Hyperlink border style will be underline of width 1pt
+}
+\makeatother
+
+\usepackage{bibentry}
+\nobibliography*
+%\bibliographystyle{apa}
+
+% Palatino font
+\usepackage[T1]{fontenc}
+\usepackage{mathdesign}
+
+\def\name{{\color{blue}\uppercase{Prithwish Chakraborty}}}
+
+\reversemarginpar
+
+\geometry{% body={7.0in, 9.5in},
+  left=0.7in,
+  right=0.8in,
+  top=0.5in,
+  bottom=0.5in
+}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\Large}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\newenvironment{specialitemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+  }
+}{
+  \end{list}
+}
+
+% Left aligend controlled width
+\newcolumntype{x}[1]{%
+>{\raggedleft\hspace{0pt}}p{#1}}%
+
+\begin{document}
+% \bibliographystyle{apalike}
+% \bibliographystyle{ieeetr}
+\bibliographystyle{abbrv}
+% ----------------------------------------
+\input{personal}
+% -----------------------------------------
+%                BODY
+% -----------------------------------------
+\section*{\color{blue}Education}
+\input{education}
+
+\section*{\color{blue} Research Statement}
+\input{research}
+
+\section*{\color{blue} Professional Experience}
+\input{professional}
+% \vspace{1em}
+% -----------------------
+\section*{\color{blue} Publications} 
+\input{publications}
+
+\section*{\color{blue} Awards and Activities}
+\input{service}
+
+\section*{\color{blue} Technical Skills}
+\input{skills}
+
+% Footer
+\bigskip
+\begin{center}
+  \begin{footnotesize}
+    Last updated: \today
+  \end{footnotesize}
+\end{center}
+
+\nobibliography{grad_publication,grad_unpublished,misc,other_publications}
+\end{document}
