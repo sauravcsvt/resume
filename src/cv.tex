@@ -1,28 +1,72 @@
-\documentclass[10pt]{article}
-\usepackage{natbib}
+% (c) 2002 Matthew Boedicker <mboedick@mboedick.org> (original author) http://mboedick.org
+% (c) 2003-2007 David J. Grant <davidgrant-at-gmail.com> http://www.davidgrant.ca
+% (c) 2008 Nathaniel Johnston <nathaniel@nathanieljohnston.com> http://www.nathanieljohnston.com
+% (c) 2016 Prithwish Chakraborty <prithwi@vt.edu> http://people.cs.vt.edu/~prithwi
+%
+%This work is licensed under the Creative Commons Attribution-Noncommercial-Share Alike 2.5 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/2.5/ or send a letter to Creative Commons, 543 Howard Street, 5th Floor, San Francisco, California, 94105, USA.
 
-\usepackage[letterpaper]{geometry}
-\usepackage{listliketab}
+\documentclass[letterpaper,11pt]{article}
+\newlength{\outerbordwidth}
+\pagestyle{empty}
+\raggedbottom
+\raggedright
+\usepackage[svgnames]{xcolor}
+\usepackage{framed}
+\usepackage{tocloft}
+\usepackage{etoolbox}
+\robustify\cftdotfill
+
+
+%-----------------------------------------------------------
+%Edit these values as you see fit
+
+\setlength{\outerbordwidth}{3pt}  % Width of border outside of title bars
+\definecolor{shadecolor}{gray}{0.75}  % Outer background color of title bars (0 = black, 1 = white)
+\definecolor{shadecolorB}{gray}{0.93}  % Inner background color of title bars
+
+
+%-----------------------------------------------------------
+%Margin setup
+
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\paperheight}{11in}
+\setlength{\paperwidth}{8.5in}
+\setlength{\tabcolsep}{0in}
+\setlength{\textheight}{9.5in}
+\setlength{\textwidth}{7in}
+\setlength{\topmargin}{-0.3in}
+\setlength{\topskip}{0in}
+\setlength{\voffset}{0.1in}
+
+
+%-----------------------------------------------------------
+%Custom commands
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+\newcommand{\resheading}[1]{\vspace{8pt}
+  \parbox{\textwidth}{\setlength{\FrameSep}{\outerbordwidth}
+    \begin{shaded}
+\setlength{\fboxsep}{0pt}\framebox[\textwidth][l]{\setlength{\fboxsep}{4pt}\fcolorbox{shadecolorB}{shadecolorB}{\textbf{\sffamily{\mbox{~}\makebox[6.762in][l]{\large #1} \vphantom{p\^{E}}}}}}
+    \end{shaded}
+  }\vspace{-5pt}
+}
+\newcommand{\ressubheading}[4]{
+{\renewcommand{\arraystretch}{1.0}%
+\begin{tabular*}{6.5in}{l@{\cftdotfill{\cftsecdotsep}\extracolsep{\fill}}r}
+		\textbf{#1} & #2 \\
+		\textit{#3} & \textit{#4}\\
+\end{tabular*}}}
+%-----------------------------------------------------------
+
+\usepackage{natbib}
 \usepackage{array}
 \usepackage{longtable}
-% \usepackage[usenames, dvipsnames]{color}
-\usepackage{xcolor}
 \PassOptionsToPackage{hyphens}{url}
-% \usepackage[colorlinks=true,]{hyperref}
 \usepackage{hyperref}
-\hypersetup{%
-  colorlinks=true,% hyperlinks will be black
-  linkcolor=red,
-  linkbordercolor=red,% hyperlink borders will be red
-}
-\makeatletter
-\Hy@AtBeginDocument{%
-  \def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
-  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
-                                % Hyperlink border style will be underline of width 1pt
-}
-\makeatother
-
+\usepackage{enumitem}
+\setlist{nolistsep}
 \usepackage{bibentry}
 \nobibliography*
 %\bibliographystyle{apa}
@@ -30,85 +74,56 @@
 % Palatino font
 \usepackage[T1]{fontenc}
 \usepackage{mathdesign}
-
-\def\name{{\color{blue}\uppercase{Prithwish Chakraborty}}}
-
-\reversemarginpar
-
-\geometry{% body={7.0in, 9.5in},
-  left=0.7in,
-  right=0.8in,
-  top=0.5in,
-  bottom=0.5in
-}
-
-% Customize page headers
-\pagestyle{myheadings}
-\markright{\name}
-\thispagestyle{empty}
-
-% Custom section fonts
-\usepackage{sectsty}
-\sectionfont{\rmfamily\mdseries\Large}
-\subsectionfont{\rmfamily\mdseries\itshape\large}
-% Other possible font commands include:
-% \ttfamily for teletype,
-% \sffamily for sans serif,
-% \bfseries for bold,
-% \scshape for small caps,
-% \normalsize, \large, \Large, \LARGE sizes.
+% \def\name{{\color{blue}\uppercase{Prithwish Chakraborty}}}
+\def\name{{\color{black}\textbf{Prithwish Chakraborty}}}
 
 % Don't indent paragraphs.
 \setlength\parindent{0em}
-
-% Make lists without bullets
-\newenvironment{specialitemize}{
-  \begin{list}{}{
-    \setlength{\leftmargin}{1.5em}
-  }
-}{
-  \end{list}
-}
 
 % Left aligend controlled width
 \newcolumntype{x}[1]{%
 >{\raggedleft\hspace{0pt}}p{#1}}%
 
 \begin{document}
-% \bibliographystyle{apalike}
-% \bibliographystyle{ieeetr}
 \bibliographystyle{abbrv}
 % ----------------------------------------
 \input{personal}
 % -----------------------------------------
 %                BODY
 % -----------------------------------------
-\section*{\color{blue}Education}
+\resheading{Education}
 \input{education}
 
-\section*{\color{blue} Research Statement}
+\resheading{Research Statement}
 \input{research}
 
-\section*{\color{blue} Professional Experience}
+\resheading{Professional Experience}
 \input{professional}
-% \vspace{1em}
-% -----------------------
-\section*{\color{blue} Publications} 
+              
+\resheading{Activities}
+\input{activities}
+
+\resheading{Publications}
 \input{publications}
 
-\section*{\color{blue} Awards and Activities}
+\resheading{Participation in Conferences}
+\input{conferences}
+
+% \section*{\color{blue} Awards and Activities}
+\resheading{Awards and Honors}
 \input{service}
 
-\section*{\color{blue} Technical Skills}
+% \section*{\color{blue} Technical Skills}
+\resheading{Technical Skills}
 \input{skills}
 
 % Footer
-\bigskip
-\begin{center}
-  \begin{footnotesize}
-    Last updated: \today
-  \end{footnotesize}
-\end{center}
+% \bigskip
+% \begin{center}
+  % \begin{footnotesize}
+    % Last updated: \today
+  % \end{footnotesize}
+% \end{center}
 
 \nobibliography{grad_publication,grad_unpublished,misc,other_publications}
 \end{document}
