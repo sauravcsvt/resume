@@ -1,11 +1,11 @@
 main: Makefile
-	pdflatex cv
-	pdflatex cv
-	bibtex cv
-	pdflatex cv
-	bibtex cv
-	pdflatex cv
-	pdflatex cv
+	pdflatex resume_Saurav_Ghosh
+	pdflatex resume_Saurav_Ghosh
+	bibtex resume_Saurav_Ghosh
+	pdflatex resume_Saurav_Ghosh
+	bibtex resume_Saurav_Ghosh
+	pdflatex resume_Saurav_Ghosh
+	pdflatex resume_Saurav_Ghosh
 
 clean:
 	-rm -rf *.out *.aux *.bbl *.blg *.log *.synctex.gz
