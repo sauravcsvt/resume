@@ -9,5 +9,5 @@ main: Makefile
 
 clean:
 	-rm -rf *.out *.aux *.bbl *.blg *.log *.synctex.gz
-	-rm -rf *.dvi *.xml *.bcf
+	-rm -rf *.dvi *.xml *.bcf *.pdf
 
